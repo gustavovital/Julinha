@@ -26,7 +26,7 @@ scatter!(numPirates, globalTemperatures, legend=false)
 xflip!()
 xlabel!("Numbers of pirates")
 ylabel!("Global temperature")
-title!("Influence of pirates on global temperatures")
+title!("Influence of pirates on  global temperatures")
 
 # Subplots
 p1 = plot(x, x)
