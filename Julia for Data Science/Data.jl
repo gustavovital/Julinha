@@ -92,8 +92,40 @@ function year_created_for(data, language::String)
             return data[lang, 1]
         end
     end
-    
+
 end
 
-@btime year_created(P, "Julia")
-@btime year_created_for(P, "Julia")
+function year_created_error(data, language::String)
+    data = convert(DataFrame, data)
+    count = 1
+    for i in 1:size(data)[1]
+        if data[count, 2] == language
+            return data[count, 1]
+        else
+            count += 1
+        end
+    end
+    if count >= size(data)[1]
+        return error("Error: language $language not found")
+    end
+end
+
+year_created(P, "Julia")
+year_created_for(P, "Julia")
+year_created_error(P, "Julia")
+
+# @btime year_created(P, "Julia")
+# @btime year_created_for(P, "Julia")
+# @btime year_created_error(P, "Julia")
+
+#=
+i not gna write anything about dict, i really hate work with dict,
+from now on, just df ;)
+=#
+
+# About missing
+P[1,1] = missing
+df = DataFrame(year = P[:, 1], language = P[:, 2])
+@show df[1:10, :]
+
+dropmissing!(df)
