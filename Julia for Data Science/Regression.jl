@@ -29,5 +29,25 @@ end
 β, α = ols(xval, yval)
 y_predict = α .+ β.* xval
 
+# scatter(xval, yval, leg=false, color="black")
+# plot!(xval, y_predict)
+
 # Doing w python
 np = pyimport("numpy")
+
+xdata = copy(xval)
+ydata = copy(yval)
+
+@time myfit = np.polyfit(xdata, ydata, 1)
+
+y_predict_2 = myfit[2] .+ myfit[1].*xval
+
+# New Graph
+scatter(xval, yval)
+plot!(xval, y_predict)
+plot!(xval, y_predict_2)
+
+# Fitting as R:
+data = DataFrame(X = xval, Y = yval)
+ols_fit = lm(@formula(Y ~ X), data)
+plot!(xval, predict(ols_fit))
