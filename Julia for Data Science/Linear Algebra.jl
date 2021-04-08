@@ -17,7 +17,7 @@ b = rand(10) # vetor de coef
 x = A\b
 @show x
 
-@show norm(A*x - b)
+@show norm(A*x - b) # aqui se minimiza os erros ols..
 
 # We also could use the inv function, but no.
 
