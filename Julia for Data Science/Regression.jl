@@ -1,3 +1,4 @@
+
 using Plots
 using Statistics
 using DataFrames
@@ -5,6 +6,8 @@ using GLM
 using StatsBase
 using PyCall
 using Tables
+
+Pkg.add("Plots")
 
 xval = repeat(1:.5:10, inner=2)
 yval = 3 .+ xval .+ 2 .*rand(length(xval)) .- 1
