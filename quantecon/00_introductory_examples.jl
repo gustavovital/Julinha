@@ -68,3 +68,4 @@ end
 
 lp = Laplace()
 plothist(lp, 500)
+
